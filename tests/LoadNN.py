@@ -30,7 +30,7 @@ def eval_genomes(genomes, config):
 
         while not done:
             # Renders the game's screen
-            #env.render()
+            env.render()
             
             # Lower the resolution and get the gray color
             ob = cv2.resize(ob,(inx,iny))
@@ -53,7 +53,7 @@ def eval_genomes(genomes, config):
                 counter+=1
 
             # Train until mario doesnt get better for 250 consecutive frames
-            if counter == 250:
+            if counter == 300:
                 done = True
             
             genome.fitness = fitness_current
@@ -67,19 +67,16 @@ config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                      'config-feedforward')
 
 # Create a checkpointer
-cp = neat.Checkpointer(10)
+cp = neat.Checkpointer(10, 120)
 
 # Create the population / load an already trained population
 # p = neat.Population(config)
-p = cp.restore_checkpoint('neat-checkpoint-1')
+p = cp.restore_checkpoint('neat-checkpoint-19')
 
 # Statistics
 p.add_reporter(neat.StdOutReporter(True))
 stats = neat.StatisticsReporter()
 p.add_reporter(stats)
-
-# Save the process after each 10 frames
-p.add_reporter(neat.Checkpointer(10))
 
 # Save the winner in a file
 winner = p.run(eval_genomes)

@@ -42,8 +42,11 @@ def eval_genomes(genomes, config):
 
             # Activate the NN and use the output as the Mario action
             nn_output = net.activate(oned_image)
+            # Mask to filter the useless buttons in the game
+            #actionMask = np.array([0,1,0,0,1,1,1,1,1])
+
             ob, rew, done, info = env.step(nn_output)
-            
+            #print(nn_output)
             # Calculate the fitness
             fitness_current += rew
             if fitness_current > current_max_fitness:
@@ -65,6 +68,7 @@ def eval_genomes(genomes, config):
 config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                      neat.DefaultSpeciesSet, neat.DefaultStagnation,
                      'config-feedforward')
+
 # Create the population
 p = neat.Population(config)
 
@@ -76,7 +80,9 @@ p.add_reporter(stats)
 # Save the process after each 10 frames
 p.add_reporter(neat.Checkpointer(10))
 
-# Save the winner in a file
+# Run the algorithm
 winner = p.run(eval_genomes)
+
+# Dump the winner
 with open('winner.pkl', 'wb') as output:
     pickle.dump(winner, output, 1)

@@ -8,7 +8,7 @@ reset_on_extinction   = True
 # node activation options
 activation_default      = sigmoid
 activation_mutate_rate  = 0.05
-activation_options      = sigmoid gauss 
+activation_options      = sigmoid gauss
 #abs clamped cube exp gauss hat identity inv log relu sigmoid sin softplus square tanh
 
 # node aggregation options
@@ -35,20 +35,20 @@ conn_delete_prob        = 0.5
 
 # connection enable options
 enabled_default         = True
-enabled_mutate_rate     = 0.5
+enabled_mutate_rate     = 0.3
 
 feed_forward            = False
 #initial_connection      = unconnected
 initial_connection      = partial_nodirect 0.5
 
 # node add/remove rates
-node_add_prob           = 0.5
+node_add_prob           = 0.3
 node_delete_prob        = 0.2
 
 # network parameters
 num_hidden              = 0
 num_inputs              = 840
-num_outputs             = 12
+num_outputs             = 9
 
 # node response options
 response_init_mean      = 1.0
@@ -69,13 +69,13 @@ weight_mutate_rate      = 0.8
 weight_replace_rate     = 0.1
 
 [DefaultSpeciesSet]
-compatibility_threshold = 2.5
+compatibility_threshold = 3.0
 
 [DefaultStagnation]
 species_fitness_func = max
-max_stagnation       = 50
+max_stagnation       = 20
 species_elitism      = 1
 
 [DefaultReproduction]
-elitism            = 3
-survival_threshold = 0.3
+elitism            = 2
+survival_threshold = 0.2
