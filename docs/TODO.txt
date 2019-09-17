@@ -1,6 +1,6 @@
 -Modificar config-forward para no dejar al PC sin memoria
 -Modificar el fichero Parallel.py para guardar los resultados
 -Modificar el fichero Parallel.py para "matar" a Mario cuando no avance
-Exportar el entorno virtual a otra maquina
-Establecer nº de cores y generaciones por parametro
+-Exportar el entorno virtual a otra maquina
+-Establecer nº de cores y generaciones por parametro
 
