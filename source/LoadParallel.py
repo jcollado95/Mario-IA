@@ -12,7 +12,7 @@ with open('winner/winner-parallel.pkl', 'rb') as f:
 #print(c)
 
 local_dir = os.path.dirname(__file__)
-config_path = os.path.join(local_dir, 'config-feedforward-parallel')
+config_path = os.path.join(local_dir, 'config-parallel')
 config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                      neat.DefaultSpeciesSet, neat.DefaultStagnation,
                      config_path)

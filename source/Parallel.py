@@ -4,7 +4,7 @@ import cv2          # pip install opencv-python
 import neat         # pip install neat-python
 import pickle       # pip install cloudpickle
 import os           # directory and file paths
-
+import argparse	    # Input arguments
 
 env = retro.make(game = 'SuperMarioBros-Nes', state = 'Level1-1')
 
@@ -60,7 +60,7 @@ def eval_genome(genome, config):
     return genome.fitness
 
 
-def run(config_file):
+def run(config_file, it, cores):
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                      neat.DefaultSpeciesSet, neat.DefaultStagnation,
                      config_file)
@@ -73,9 +73,9 @@ def run(config_file):
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
 
-    # Run for up to 300 generations
-    pe = neat.ParallelEvaluator(4, eval_genome)
-    winner = p.run(pe.evaluate, 3)
+    # Run for x generations
+    pe = neat.ParallelEvaluator(cores, eval_genome)
+    winner = p.run(pe.evaluate, it)
 
     # Display and save the winning genome
     print('\nBest genome:\n{!s}'.format(winner))
@@ -84,7 +84,19 @@ def run(config_file):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--iterations", default=100, help="Número de iteraciones del algoritmo", type=int)
+    parser.add_argument("-c", "--cores", default=4, help="Número de procesadores paralelos", type=int)
+
+    args = parser.parse_args()
+    if args.iterations:
+        it = args.iterations
+        print(it)
+    if args.cores:
+        cores = args.cores
+        print(cores)
+
     # Determine path to config file
     local_dir = os.path.dirname(__file__)
-    config_path = os.path.join(local_dir, 'config-feedforward-parallel')
-    run(config_path)
+    config_path = os.path.join(local_dir, 'config-parallel')
+    run(config_path, it, cores)
