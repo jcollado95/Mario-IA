@@ -1,0 +1,27 @@
+[1mdiff --git a/source/config-parallel b/source/config-parallel[m
+[1mindex 4547797..228dd38 100644[m
+[1m--- a/source/config-parallel[m
+[1m+++ b/source/config-parallel[m
+[36m@@ -1,7 +1,7 @@[m
+ [NEAT][m
+ fitness_criterion     = max[m
+ fitness_threshold     = 4000[m
+[31m-pop_size              = 10[m
+[32m+[m[32mpop_size              = 20[m
+ reset_on_extinction   = True[m
+ [m
+ [DefaultGenome][m
+[36m@@ -72,8 +72,8 @@[m [mweight_replace_rate     = 0.1[m
+ compatibility_threshold = 3.0[m
+ [m
+ [DefaultStagnation][m
+[31m-species_fitness_func = max[m
+[31m-max_stagnation       = 20[m
+[32m+[m[32mspecies_fitness_func = mean[m
+[32m+[m[32mmax_stagnation       = 15[m
+ species_elitism      = 2[m
+ [m
+ [DefaultReproduction][m
+[1mdiff --git a/source/winner/winner-parallel.pkl b/source/winner/winner-parallel.pkl[m
+[1mindex 7b10064..377c5b8 100644[m
+Binary files a/source/winner/winner-parallel.pkl and b/source/winner/winner-parallel.pkl differ
