@@ -49,6 +49,7 @@ while not done:
 
     # Activate the ANN
     nn_output = net.activate(nn_input)
+    nn_output = [0, 0, 0, 0, 0, 0] + nn_output
 
     # Mario step
     ob, rew, done, info = env.step(nn_output)

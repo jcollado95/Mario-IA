@@ -26,7 +26,7 @@ def eval_genome(genome, config):
 
     while not done:
         # Renders the games screen
-        #env.render()
+        env.render()
 
         # Apply the new resolution and put it in gray color
         ob = cv2.resize(ob, (inx, iny))
@@ -38,8 +38,11 @@ def eval_genome(genome, config):
 
         # Activate the ANN
         nn_output = net.activate(nn_input)
-
+        
         # Mario step
+        nn_output = [0, 0, 0, 0, 0, 0] + nn_output
+        #print(nn_output)
+
         ob, rew, done, info = env.step(nn_output)
 
         # Calculate the fitness

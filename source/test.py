@@ -5,20 +5,12 @@ def main():
     obs = env.reset()
 
     #buttons: [B, None, select, start, up, down, left, right, A]
-    action1 = [0,0,0,0,0,0,0,1,1]
-    action2 = [0,1,0,0,0,0,0,0,0]
-    #action = env.action_space.sample()
 
-    it = False
     while True:
-        if it:
-            obs, rew, done, info = env.step(action1)
-        else:
-            obs, rew, done, info = env.step(action2)
-        it = not it
-
-        print(action1)
-        print(action2)
+        action = env.action_space.sample()
+        action = action * [0, 0, 0, 0, 0, 0, 1, 1, 1]
+        obs, rew, done, info = env.step(action)
+        print(action)
         env.render()
         if done:
             obs = env.reset()
