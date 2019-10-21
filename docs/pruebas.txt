@@ -1,0 +1,55 @@
+En 100 iteraciones, resultados para cada una de las configuraciones:
+
+    - Grupos 1, 2 y 3 (~9.45s, no hay especies, red grande):
+        G00: 184.0
+        G03: 346.0
+        G10: 604.0
+        G25: 769.0
+        G64: 1017.0
+        G100: 1017.0
+
+    - Grupos 4, 5 y 6  (~9.94s, 2 especies, red grande):
+        G00: 0.0
+        G01: 183.0
+        G02: 184.0
+        G03: 570.0
+        G12: 607.0
+        G27: 608.0
+        G52: 1006.0
+        G100: 1006.0
+
+    - Grupos 7, 8 y 9 (~3.85s, 2-3 especies, red pequeña):
+        G00: 0.0
+        G01: 184.0
+        G03: 322.0
+        G08: 715.0
+        G88: 1006.0
+        G100: 1006.0
+
+    - Igual pero con FeedForward (~4s, 3-4 especies, red pequeña):
+        G00: 0.0
+        G01: 184.0
+        G26: 603.0
+        G100: 603.0
+
+    Grupo 10 (~3.16s, x-2 especies, red pequeña):
+        G00: 0.0
+        G01: 184.0
+        G28: 481
+        G31: 573.0
+        G33: 608.0
+        G100: 608.0
+
+    Grupo 11, 12, 13, 14 y 15 (~3.07s, x-2 especies, red pequeña):
+        G00: 0.0
+        G18: 184.0
+        G37: 322.0
+        G100: 322.0
+
+    Población = 50 (~9.06s, x especies, red pequeña):
+        G00: 0.0
+        G01: 184.0
+        G17: 185.0
+        G50: 473.0
+        G55: 609.0
+

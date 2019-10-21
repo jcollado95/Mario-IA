@@ -3,4 +3,8 @@
 -Modificar el fichero Parallel.py para "matar" a Mario cuando no avance
 -Exportar el entorno virtual a otra maquina
 -Establecer nº de cores y generaciones por parametro
+-Reducir salidas de la NN a los 3 botones útiles
+-Generar varias especies
+Intentar aumentar las muertes tambien
+Visualización de la red
 
