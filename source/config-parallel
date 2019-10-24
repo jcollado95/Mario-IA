@@ -1,7 +1,7 @@
 [NEAT]
 fitness_criterion     = max
 fitness_threshold     = 4000
-pop_size              = 64
+pop_size              = 100
 reset_on_extinction   = True
 
 [DefaultGenome]
@@ -53,21 +53,21 @@ num_outputs             = 3
 
 # node response options
 response_init_mean      = 1.0
-response_init_stdev     = 0.05
+response_init_stdev     = 0.0
 response_max_value      = 30.0
 response_min_value      = -30.0
 response_mutate_power   = 0.1
-response_mutate_rate    = 0.75
-response_replace_rate   = 0.1
+response_mutate_rate    = 0.1
+response_replace_rate   = 0.0
 
 # connection weight options
-weight_init_mean        = 0.1
+weight_init_mean        = 0.0
 weight_init_stdev       = 1.0
 weight_max_value        = 30
 weight_min_value        = -30
-weight_mutate_power     = 0.5
-weight_mutate_rate      = 0.8
-weight_replace_rate     = 0.1
+weight_mutate_power     = 0.825
+weight_mutate_rate      = 0.460
+weight_replace_rate     = 0.0245
 
 [DefaultSpeciesSet]
 compatibility_threshold = 3.0
@@ -78,5 +78,5 @@ max_stagnation       = 10
 species_elitism      = 2
 
 [DefaultReproduction]
-elitism            = 3
-survival_threshold = 0.2
+elitism            = 2
+survival_threshold = 0.1

@@ -19,9 +19,9 @@ def eval_genome(genome, config):
     iny = int(iny/8)
 
     # Create the recurrent network 
-    net = neat.nn.RecurrentNetwork.create(genome, config)
-    current_max_fitness = 0
-    fitness_current = 0
+    net = neat.nn.FeedForwardNetwork.create(genome, config)
+    max_fitness = 0
+    current_fitness = 0
     counter = 0
 
     while not done:
@@ -34,21 +34,20 @@ def eval_genome(genome, config):
         ob = np.reshape(ob, (inx, iny))
 
         # Make the 2D screen a 1D array
-        nn_input = np.ndarray.flatten(ob)
+        nn_input = ob.flatten()
 
         # Activate the ANN
         nn_output = net.activate(nn_input)
         nn_output = np.concatenate([np.zeros(6), np.asarray(nn_output)])
-        # Mario step
-        #nn_output = [0, 0, 0, 0, 0, 0] + nn_output
-        #print(nn_output)
 
-        ob, rew, done, info = env.step(nn_output)
+        # Mario step
+        obs, rew, done, info = env.step(nn_output)
+        ob = obs
 
         # Calculate the fitness
-        fitness_current += rew
-        if fitness_current > current_max_fitness:
-            current_max_fitness = fitness_current
+        current_fitness += rew
+        if current_fitness > max_fitness:
+            max_fitness = current_fitness
             counter = 0
         else:
             counter += 1
@@ -57,8 +56,7 @@ def eval_genome(genome, config):
         if counter == 250:
             done = True
 
-        genome.fitness = fitness_current
-
+    genome.fitness = max_fitness
     print("Fitness: ", genome.fitness)
     return genome.fitness
 
