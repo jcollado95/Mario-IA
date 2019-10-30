@@ -1,10 +1,11 @@
-import retro        # pip install gym-retro
-import numpy as np  # pip install numpy
-import cv2          # pip install opencv-python
-import neat         # pip install neat-python
-import pickle       # pip install cloudpickle
-import os           # directory and file paths
-import argparse	    # Input arguments
+import retro                # pip install gym-retro
+import numpy as np          # pip install numpy
+import cv2                  # pip install opencv-python
+import neat                 # pip install neat-python
+import pickle               # pip install cloudpickle
+import os                   # directory and file paths
+import argparse	            # Input arguments
+import visualize            # NN visualization
 
 env = retro.make(game = 'SuperMarioBros-Nes', state = 'Level1-1')
 
@@ -38,7 +39,7 @@ def eval_genome(genome, config):
 
         # Activate the ANN
         nn_output = net.activate(nn_input)
-        nn_output = np.concatenate([np.zeros(6), np.asarray(nn_output)])
+        nn_output = np.concatenate([np.zeros(7), np.asarray(nn_output)])
 
         # Mario step
         obs, rew, done, info = env.step(nn_output)
@@ -83,6 +84,9 @@ def run(config_file, it, cores):
     with open('winner/winner-parallel.pkl', 'wb') as output:
         pickle.dump(winner, output, 1)
 
+    visualize.draw_net(config, winner, view=True, filename="draw_net")
+    visualize.plot_stats(stats, ylog=False, view=True)
+    visualize.plot_species(stats, view=True)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

@@ -5,7 +5,9 @@ import numpy as np
 import retro
 import neat
 
-with open('winner/winner-parallel.pkl', 'rb') as f:
+import visualize            # NN visualization
+
+with open('winner/best.pkl', 'rb') as f:
     c = pickle.load(f)
 
 #print('Loaded genome: ')
@@ -61,10 +63,10 @@ while not done:
         counter = 0
     else:
         counter += 1
-    
+
     # End if no improvement in 250 frames
     if counter == 250:
         done = True
 
-
+visualize.draw_net(config, c, view=True, filename="draw_net")
 print("Fitness: ", fitness_current)
