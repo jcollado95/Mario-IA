@@ -53,3 +53,4 @@ En 100 iteraciones, resultados para cada una de las configuraciones:
         G50: 473.0
         G55: 609.0
 
+BEST: 5000 iteraciones en ~21h (~16s por generación)

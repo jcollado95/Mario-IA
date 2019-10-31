@@ -6,5 +6,5 @@
 -Reducir salidas de la NN a los 3 botones útiles
 -Generar varias especies
 Intentar aumentar las muertes tambien
-Visualización de la red
+-Visualización de la red
 
