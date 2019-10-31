@@ -4,14 +4,12 @@ import cv2
 import numpy as np
 import retro
 import neat
+import time
 
 import visualize            # NN visualization
 
-with open('winner/best.pkl', 'rb') as f:
+with open('winner/winner-parallel.pkl', 'rb') as f:
     c = pickle.load(f)
-
-#print('Loaded genome: ')
-#print(c)
 
 local_dir = os.path.dirname(__file__)
 config_path = os.path.join(local_dir, 'config-parallel')
@@ -47,14 +45,16 @@ while not done:
     ob = np.reshape(ob, (inx, iny))
 
     # Make the 2D screen a 1D array
-    nn_input = np.ndarray.flatten(ob)
+    nn_input = ob.flatten()
 
     # Activate the ANN
     nn_output = net.activate(nn_input)
-    nn_output = [0, 0, 0, 0, 0, 0] + nn_output
+    nn_output = np.concatenate([np.zeros(7), np.asarray(nn_output)])
 
     # Mario step
-    ob, rew, done, info = env.step(nn_output)
+    time.sleep(.01)
+    obs, rew, done, info = env.step(nn_output)
+    ob = obs
 
     # Calculate the fitness
     fitness_current += rew
@@ -68,5 +68,5 @@ while not done:
     if counter == 250:
         done = True
 
-visualize.draw_net(config, c, view=True, filename="draw_net")
+#visualize.draw_net(config, c, view=True, filename="draw_net")
 print("Fitness: ", fitness_current)
